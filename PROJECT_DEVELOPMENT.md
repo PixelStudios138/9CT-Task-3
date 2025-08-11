@@ -58,4 +58,6 @@ Data remains available for further queries or analysis.
 
 ## Phase 2
 ### Current Information
-There is currently no data on this topic, as that kind of data hasn't been analysed before/.
+The only data is the primary data from the Analytics tab of the Spirits Of Salt official Youtube channel. This is one I have access to, and they are a new hard rock band, so they fit the criteria of my question. Here you can see who is viewing these songs, where people are engaged/disengaged, what people are watching it on, etc. The problem is that it's the wrong kind of data that won't answer my question. I have to collect my own data, which I have.
+
+
