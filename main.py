@@ -27,18 +27,25 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 # Defining some variables. The artist_albums dictionary will hold the names of the albums for each artist
 artist_albums = {}
 
+# Function to retrieve and store albums for a given artist URI
 def show_album(uri, name):
     albums_list = []
+    # Search for the artist's albums using the provided URI
     results = sp.artist_albums(uri, album_type='album')
+    # Create a list of albums for the artist
     albums = results['items']
     while results['next']:
+        # Add each album to the list and continue until there are no more results
         results = sp.next(results)
         albums.extend(results['items'])
-
+    # Store the album names in a list to use for the dictionary
     for album in albums:
         albums_list.append(album['name'])
+    # Add the information to the dictionary. The key is the artist name and the value is the list of albums previously created
     artist_albums[name] = albums_list
 
+# Retrieve and store albums for each artist
+# There probably is a way to automate this, but that would take 5 more hours than I have
 show_album(screaming_jets_uri, "The Screaming Jets")
 show_album(acdc_uri, "AC/DC")
 show_album(noiseworks_uri, "Noiseworks")
@@ -53,5 +60,6 @@ show_album(inxs_uri, "INXS")
 show_album(australian_crawl_uri, "Australian Crawl")
 show_album(choirboys_uri, "The Choirboys")
 
+# Convert the artist_albums dictionary to a DataFrame and save it to a CSV file
 df = pd.DataFrame.from_dict(artist_albums, orient='index').transpose()
 df.to_csv("artist_albums.csv", index=False)
