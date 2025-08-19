@@ -1,83 +1,94 @@
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("Album Streams.csv")
 
-#print(df['Artist'].value_counts())
-
-#chisel_data = df[df['Artist'] == 'Cold Chisel']
-#print(chisel_data)
+# Alternative: Read from CSV file
+# df = pd.read_csv('your_file.csv')
 
 # Convert the string columns to integers by removing commas
-df['Total Streams'] = df['Total Streams'].str.replace(',', '').astype(int) #replace the string using astype which is a special method
-#df['Artist Streams'] = df['Artist Streams'].str.replace(',', '').astype(int) 
+df['Total Streams'] = df['Total Streams'].str.replace(',', '').astype(int)
+df['Artist Streams'] = df['Artist Streams'].str.replace(',', '').astype(int)
 
-sorted_by_artist = df.sort_values(by='Total Streams', ascending=False)
-print(sorted_by_artist[['Album', 'Artist', 'Total Streams']].head())
+sorted_by_artist = df.sort_values(by='Total Streams', ascending=False).head(10)
 
-sorted_by_artist = sorted_by_artist['Albums'].value_counts().head()
+def plot_top_albums():
+    # Create a bar chart with albums on x-axis and streams on y-axis
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
-# Create a bar chart with albums on x-axis and streams on y-axis
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+    # Plot Total Streams
+    ax1.bar(sorted_by_artist['Album'], sorted_by_artist['Total Streams'], color='skyblue', alpha=0.7)
+    ax1.set_title('Total Streams by Album')
+    ax1.set_xlabel('Album')
+    ax1.set_ylabel('Total Streams')
+    ax1.tick_params(axis='x', rotation=45)
+    # Format y-axis to show values in millions
+    ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
 
-# Plot Total Streams
-ax1.bar(sorted_by_artist['Album'], sorted_by_artist['Total Streams'], color='skyblue', alpha=0.7)
-ax1.set_title('Total Streams by Album')
-ax1.set_xlabel('Album')
-ax1.set_ylabel('Total Streams')
-ax1.tick_params(axis='x', rotation=45)
-# Format y-axis to show values in millions
-ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
+    # Plot Artist Streams
+    ax2.bar(df['Artist'], df['Artist Streams'], color='lightcoral', alpha=0.7)
+    ax2.set_title('Artist Total Streams')
+    ax2.set_xlabel('Album')
+    ax2.set_ylabel('Artist Streams')
+    ax2.tick_params(axis='x', rotation=45)
+    # Format y-axis to show values in millions
+    ax2.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
 
-# Plot Artist Streams
-ax2.bar(sorted_by_artist['Album'], sorted_by_artist['Artist Streams'], color='lightcoral', alpha=0.7)
-ax2.set_title('Artist Total Streams')
-ax2.set_xlabel('Album')
-ax2.set_ylabel('Artist Streams')
-ax2.tick_params(axis='x', rotation=45)
-# Format y-axis to show values in millions
-ax2.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
+    plt.tight_layout()
+    plt.savefig("most_popular_albums.png")
+    plt.show()
 
-plt.tight_layout()
-plt.show()
 
-# Alternative: Combined bar chart
-fig, ax = plt.subplots(figsize=(12, 6))
-x = range(len(df))
-width = 0.35
-
-ax.bar([i - width/2 for i in x], df['Total Streams'], width,
-       label='Total Streams', color='skyblue', alpha=0.7)
-ax.bar([i + width/2 for i in x], df['Artist Streams'], width,
-       label='Artist Streams', color='lightcoral', alpha=0.7)
-
-ax.set_xlabel('Albums')
-ax.set_ylabel('Streams')
-ax.set_title('Album vs Artist Streams Comparison')
-ax.set_xticks(x)
-ax.set_xticklabels(sorted_by_artist['Album'], rotation=45)
-ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
-ax.legend()
-
-plt.tight_layout()
-plt.show()
-
-"""
-sorted_by_artist.plot(kind='bar', title='Top 25 Albums by Total Streams')
-plt.xlabel('Album')
-plt.ylabel('Total Streams')
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.savefig("top_25_albums.png")
-plt.show()
-
-# Count albums for each artist
+    # Count albums for each artist
 artist_counts = df['Artist'].value_counts()
-#print(artist_counts)
 
-artist_counts.plot(kind='pie', autopct='%1.1f%%', title='Distribution of Albums by Artist')
-plt.ylabel('')  # Removes default y-axis label
-plt.tight_layout()
-plt.savefig("artist_pie_chart.png")
-#plt.show()
-"""
+def plot_album_artists():
+    artist_counts.plot(kind='pie', autopct='%1.1f%%', title='Distribution of Albums by Artist')
+    plt.ylabel('')  # Removes default y-axis label
+    plt.tight_layout()
+    plt.savefig("artist_pie_chart.png")
+    plt.show()
+
+print("Hello. How would you like to view data on these Australian artists? (Type the number of your choice)")
+while True:
+    print("1. Top 10 Albums by Total Streams & Artist Streams")
+    print("2. Artist Distribution Pie Chart")
+    print("3. Individual Artist Details")
+
+    choice = input("Enter your choice (1/2/3): ")
+    if choice == '1':
+        plot_top_albums()
+    elif choice == '2':
+        plot_album_artists()
+    elif choice == '3':
+        artist_name = input("Enter the name of the artist: ")
+        if artist_name in df['Artist'].values:
+            artist_data = df[df['Artist'] == artist_name]
+            # Create a bar chart with albums on x-axis and streams on y-axis
+            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+            # Plot Total Streams
+            ax1.bar(artist_data['Album'], artist_data['Total Streams'], color='skyblue', alpha=0.7)
+            ax1.set_title('Total Streams by Album')
+            ax1.set_xlabel('Album')
+            ax1.set_ylabel('Total Streams')
+            ax1.tick_params(axis='x', rotation=45)
+            # Format y-axis to show values in millions
+            ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
+
+            # Plot Artist Streams
+            ax2.bar(artist_data['Artist'], artist_data['Artist Streams'], color='lightcoral', alpha=0.7)
+            ax2.set_title('Artist Total Streams')
+            ax2.set_xlabel('Album')
+            ax2.set_ylabel('Artist Streams')
+            ax2.tick_params(axis='x', rotation=45)
+            # Format y-axis to show values in millions
+            ax2.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
+
+            plt.tight_layout()
+            plt.savefig(f"{artist_name}_details.png")
+            plt.show()
+            #print(artist_data)
+            
+        else:
+            print("Artist not found in the dataset.")
