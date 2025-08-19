@@ -2,15 +2,14 @@
 
 ## Phase 1
 ### Question
-My question for this project is: "What is the most popular Australian album?"
+My question for this project is: "What is the most popular Australian rock album?"
 
 ### Hypothesis
-#### Australian pub rock is a fairly popular genre, with 40 year old Australians listening to it
+#### Back In Black is the most poplar Australian rock album
 
 ---
 
-My hypothesis is: "Australian pub rock is a fairly popular genre, with 40 year old Australians listening to it". The reason for this hypothesis is that australian pub rock rarely made it big overseas (apart from AC/DC). 
-
+My hypothesis is: "Back In Black is the most popular Australian rock album". This stems from the fact that 
 ### Functional And Non-Functional Requirements
 Functional Requirements:  
 - Successfully create and load the dataset
