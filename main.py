@@ -10,8 +10,10 @@ df = pd.read_csv("Album Streams.csv")
 df['Total Streams'] = df['Total Streams'].str.replace(',', '').astype(int)
 df['Artist Streams'] = df['Artist Streams'].str.replace(',', '').astype(int)
 
+# Sort the csv file for the albums with the top 10 most streams and save it to a new dataset
 sorted_by_artist = df.sort_values(by='Total Streams', ascending=False).head(10)
 
+# Function to show a plot of the top 10 albums and each artists stream
 def plot_top_albums():
     # Create a bar chart with albums on x-axis and streams on y-axis
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
@@ -42,6 +44,7 @@ def plot_top_albums():
     # Count albums for each artist
 artist_counts = df['Artist'].value_counts()
 
+# Function to show the share of albums per artist
 def plot_album_artists():
     artist_counts.plot(kind='pie', autopct='%1.1f%%', title='Distribution of Albums by Artist')
     plt.ylabel('')  # Removes default y-axis label
@@ -54,8 +57,9 @@ while True:
     print("1. Top 10 Albums by Total Streams & Artist Streams")
     print("2. Artist Distribution Pie Chart")
     print("3. Individual Artist Details")
+    print("Q. Quit the program")
 
-    choice = input("Enter your choice (1/2/3): ")
+    choice = input("Enter your choice (1/2/3/q): ")
     if choice == '1':
         plot_top_albums()
     elif choice == '2':
@@ -92,3 +96,5 @@ while True:
             
         else:
             print("Artist not found in the dataset.")
+    elif choice == 'q':
+        quit()
