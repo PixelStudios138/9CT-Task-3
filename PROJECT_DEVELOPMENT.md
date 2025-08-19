@@ -2,7 +2,7 @@
 
 ## Phase 1
 ### Question
-My question for this project is: "How popular is Australian pub rock, and what is the main demographic of people listening to it?"
+My question for this project is: "What is the most popular Australian album?"
 
 ### Hypothesis
 #### Australian pub rock is a fairly popular genre, with 40 year old Australians listening to it
