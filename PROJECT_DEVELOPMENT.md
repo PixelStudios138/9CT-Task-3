@@ -56,6 +56,15 @@ Data remains available for further queries or analysis.
 
 ## Phase 2
 ### Current Information
-I can access data directly from Spotify, which I intend to do for this assessment. For the purpose of keeping the dataset a decent size and unbiased, I am going to be looking at the following artists: AC/DC, The Screaming Jets, Cold Chisel, Jimmy Barnes, Ian Moss, Noiseworks, Icehouse, The Angels, Midnight Oil, Rose Tattoo, INXS, Australian Crawl, and The Choirboys. I can access data for monthly listeners, 
+I can access data directly from Spotify, which I intend to do for this assessment. For the purpose of keeping the dataset a decent size and unbiased, I am going to be looking at the following artists: AC/DC, The Screaming Jets, Cold Chisel, Jimmy Barnes, Ian Moss, Noiseworks, Icehouse, The Angels, Midnight Oil, Rose Tattoo, INXS, Australian Crawl, and The Choirboys. I can access data for total streams on songs and albums, and use that to form my dataset.
+
+### Data Dictionary
+
+|Field         |Data Type |Format For Display | Description                         | Example   | Validation                                       |
+|--------------|----------|-------------------|-------------------------------------|-----------|--------------------------------------------------|
+|Album         |object    |XX..XX             |Name of the album                    |Hysteria   |Can be any amount of characters, including numbers|
+|Artist        |object    |XX..XX             |Name of the artist who made the album|Def Leppard|Can be any amount of characters, including numbers|
+|Total Streams |int64     |NNN                |Total number of streams of the album |123456789  |Must be a whole number, not seperated by commas   |
+|Artist Streams|int64     |NNN                |Total number of streams of the artist|987654321  |Must be a whole number, not seperated by commas   |
 
 
