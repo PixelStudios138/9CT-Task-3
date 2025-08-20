@@ -26,7 +26,7 @@ while True:
     choice = input("Enter your choice (1/2/3/4/q): ")
     if choice == '1':
         # Display the top albums
-        dm.plot_top_albums(sorted_by_artist, df)
+        dm.plot_top_albums(sorted_by_artist, df, "most_popular")
     elif choice == '2':
         # Display the artist/album share
         dm.plot_album_artists(artist_counts)
@@ -34,7 +34,7 @@ while True:
         artist_name = input("Enter the name of the artist: ")
         if artist_name in df['Artist'].values:
             artist_data = df[df['Artist'] == artist_name]
-            dm.plot_top_albums(artist_data, artist_data)
+            dm.plot_top_albums(artist_data, artist_data, artist_name)
         else:
             print("Artist not found in the dataset.")
     elif choice == '4':

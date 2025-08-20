@@ -12,7 +12,7 @@ def plot_album_artists(artist_counts):
     plt.show()
 
 # Function to show a plot of the top 10 albums and each artists stream
-def plot_top_albums(artist_dataset, df):
+def plot_top_albums(artist_dataset, df, artist_name):
     # Create a bar chart with albums on x-axis and streams on y-axis
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
 
@@ -35,5 +35,5 @@ def plot_top_albums(artist_dataset, df):
     ax2.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x/1e6:.0f}M'))
 
     plt.tight_layout()
-    plt.savefig("most_popular_albums.png")
+    plt.savefig(f"{artist_name}_albums.png")
     plt.show()
