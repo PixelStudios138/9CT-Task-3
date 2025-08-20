@@ -58,9 +58,10 @@ while True:
     print("1. Top 10 Albums by Total Streams & Artist Streams")
     print("2. Artist Distribution Pie Chart")
     print("3. Individual Artist Details")
+    print("4. View the dataset")
     print("Q. Quit the program")
 
-    choice = input("Enter your choice (1/2/3/q): ")
+    choice = input("Enter your choice (1/2/3/4/q): ")
     if choice == '1':
         # Display the top albums
         plot_top_albums()
@@ -97,6 +98,9 @@ while True:
             plt.show()            
         else:
             print("Artist not found in the dataset.")
+    elif choice == '4':
+        # Display the dataset
+        print(df)
     elif choice == 'q':
         # Exit the program
         quit()
