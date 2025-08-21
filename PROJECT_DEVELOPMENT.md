@@ -2,20 +2,20 @@
 
 ## Phase 1
 ### Question
-My question for this project is: "What is the most popular Australian rock album?"
+My question for this project is: "What is the most popular Australian rock album, and who has the most albums?"
 
 ### Hypothesis
-#### Back In Black is the most poplar Australian rock album
+#### Back In Black is the most poplar Australian rock album, but Jimmy Barnes has the most albums
 
 ---
 
-My hypothesis is: "Back In Black is the most popular Australian rock album". This stems from the fact that 
+My hypothesis is: "Back In Black is the most popular Australian rock album, but Jimmy Barnes has the most albums". This stems from the fact that Back In Black is considered one of the most influential albums of all time, while Jimmy Barnes has been releasing albums non stop since 1984.
+
 ### Functional And Non-Functional Requirements
 Functional Requirements:  
 - Successfully create and load the dataset
-- Clean any missing data by using the mean for the category (or deleting it depending on the category)
-- Should be visualised in a Matplotlib chart
-- Charts should be downloadable, and the cleaned dataset should be exported to a `.csv` file  
+- Should be visualised in a Matplotlib chart (unless dataset is being viewed)
+- Charts should be saved when viewed
 
 Non Functional Requirements:  
 - User Interface should be simple and easy to use
@@ -40,9 +40,11 @@ Main Flow:
 User opens the program and is presented with an app. It opens to a menu with some options.
 
 User selects one of the following options:
-a. View popularity of artists (as a chart)
-b. View most popular songs (as a chart)
-c. View main demographic listening to the artists (as a chart)
+a. View top 10 albums by total streams and every artist's total streams
+b. View pie chart of % of total albums by each artist
+c. View each album by an artist's streams
+d. View full dataset
+e. Quit the program
 
 System performs the requested action and outputs to user.
 
@@ -67,4 +69,14 @@ I can access data directly from Spotify, which I intend to do for this assessmen
 |Total Streams |int64     |NNN                |Total number of streams of the album |123456789  |Must be a whole number, not seperated by commas   |
 |Artist Streams|int64     |NNN                |Total number of streams of the artist|987654321  |Must be a whole number, not seperated by commas   |
 
+## Phase 4
+### Analysis
+From my findings, I can conclude that Back In Black is the most popular Australian rock album, and Jimmy Barnes does have the most albums of the 13 artists analysed. When looking at the top 10 albums, Back In Black is at the top with 4.75 billion total streams. AC/DC also hold the second and third spot with Highway To Hell and The Razor's edge respectively. When looking at the share of albums per artist, Jimmy Barnes holds the top spot with 15.4% of the 130 albums in the dataset, as he has 21 albums. This aligns perfectly with my hypothesis. After multiple runs of the code, it returns the same result multiple times, proving its accuracy.
+
+### Peer Analysis
+Peer 1 -
+
+Peer 2 - 
+
+Peer 3 - 
 
