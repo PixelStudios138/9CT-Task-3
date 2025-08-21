@@ -55,11 +55,11 @@ System performs the requested action and outputs to user.
 
 Postconditions:
 
-User has viewed and/or interacted with the data.
+User has viewed the data.
 
-Any valid updates are saved by the system.
+Any new charts are saved by the system.
 
-Data remains available for further queries or analysis.
+Data and charts remains available for further queries or analysis.
 
 ## Phase 2
 ### Current Information
